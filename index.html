@@ -35,8 +35,8 @@
     :root {
       --im-black: #000000;
       --im-white: #FFFFFF;
-      --im-neon: #C8FF00;
-      --im-neon-green: #00E600;
+      --accent: #00D8FF;
+      --accent-gradient: linear-gradient(115deg, #00B9FF 0%, #00D8FF 50%, #1DF07A 100%);
       --im-blue: #00B9FF;
       --im-purple: #A500E6;
 
@@ -238,7 +238,7 @@
     }
 
     .notice-box strong {
-      color: var(--im-neon);
+      color: var(--accent);
       font-weight: 700;
     }
 
@@ -277,7 +277,7 @@
       font-weight: 700;
       letter-spacing: 0;
       background: var(--im-black);
-      color: var(--im-neon);
+      color: var(--accent);
       flex-shrink: 0;
     }
 
@@ -409,7 +409,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--im-neon);
+      background: var(--accent);
     }
 
     /* Privacy section */
@@ -501,7 +501,7 @@
     }
 
     .submit-btn:hover:not(:disabled) {
-      background: var(--im-neon);
+      background: var(--accent-gradient);
       color: var(--im-black);
     }
 
@@ -553,7 +553,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: var(--im-neon);
+      background: var(--accent-gradient);
       z-index: 100;
       justify-content: center;
       align-items: center;
