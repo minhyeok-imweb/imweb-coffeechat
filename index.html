@@ -553,7 +553,8 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: var(--accent-gradient);
+      overflow: hidden;
+      background: var(--im-white);
       z-index: 100;
       justify-content: center;
       align-items: center;
@@ -563,7 +564,25 @@
 
     .success-overlay.visible { display: flex; }
 
+    /* 히어로와 같은 톤의 블러 그라데이션을 아래쪽에만 은은하게 */
+    .success-overlay::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 72%;
+      width: max(120vw, 900px);
+      aspect-ratio: 1 / 0.8;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 60% 30%, #1DF07A 0%, rgba(29,240,122,0) 22%),
+        linear-gradient(115deg, #00B9FF 0%, #00D8FF 55%, #00E08C 100%);
+      filter: blur(40px);
+      opacity: 0.75;
+    }
+
     .success-content {
+      position: relative;
       animation: scaleIn 0.5s ease-out;
       max-width: 480px;
     }
@@ -590,6 +609,7 @@
     }
 
     .success-content p {
+      word-break: keep-all;
       font-size: 15px;
       color: var(--text);
       line-height: 1.75;
