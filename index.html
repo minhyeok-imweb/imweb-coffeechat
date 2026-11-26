@@ -11,7 +11,7 @@
 
   <meta property="og:title" content="아임웹 커피챗 신청">
   <meta property="og:description" content="아임웹과 30분, 콜챗/화상/대면으로 만나요.">
-  <meta name="theme-color" content="#C8FF00">
+  <meta name="theme-color" content="#FFFFFF">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Defense-in-depth CSP. 'unsafe-inline' for the inline <style>/<script> blocks. -->
@@ -119,65 +119,68 @@
 
     .topbar a:hover { background: var(--border); }
 
-    /* Hero: 네온 컬러 블록 + 유기적인 그래픽 */
+    /* Hero: 흰 바탕 + GO BIGGER 캠페인 톤의 블러 그라데이션 */
     .hero {
       position: relative;
       overflow: hidden;
-      background: var(--im-neon);
+      background: var(--im-white);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 44px 44px 52px;
-      min-height: 480px;
-      display: flex;
-      align-items: flex-end;
+      padding: 48px 44px 250px;
       margin-bottom: 12px;
       animation: fadeUp 0.6s ease-out;
     }
 
-    .hero-blob { position: absolute; display: block; }
-
-    .hero-blob-side {
-      top: 0;
-      right: 0;
-      width: 38%;
-      height: 100%;
+    .hero-glow {
+      position: absolute;
+      left: -22%;
+      top: 58%;
+      width: 150%;
+      aspect-ratio: 1 / 0.92;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 60% 34%, #00FF5A 0%, rgba(0,255,90,0) 20%),
+        radial-gradient(circle at 12% 20%, #1DF07A 0%, rgba(29,240,122,0) 26%),
+        radial-gradient(circle at 92% 42%, #00E08C 0%, rgba(0,224,140,0) 24%),
+        linear-gradient(115deg, #00B9FF 0%, #00D8FF 48%, #00C8F0 100%);
+      filter: blur(26px);
     }
 
-    .hero-blob-bottom { display: none; }
-
-    .hero-inner { position: relative; z-index: 1; max-width: 62%; }
+    .hero-inner { position: relative; z-index: 1; }
 
     .hero-tag {
       display: inline-block;
-      border: 1.5px solid var(--im-black);
-      color: var(--im-black);
+      background: var(--im-black);
+      color: var(--im-white);
       font-size: 13px;
       font-weight: 600;
-      padding: 6px 13px;
+      padding: 7px 14px;
       border-radius: 100px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .hero h1 {
-      font-size: clamp(56px, 14vw, 108px);
-      font-weight: 800;
-      letter-spacing: -0.055em;
-      line-height: 0.9;
-      color: var(--im-black);
-      margin-bottom: 32px;
+      font-size: clamp(54px, 13vw, 100px);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 0.95;
+      color: var(--text);
+      margin-bottom: 28px;
     }
 
     .hero h2 {
-      font-size: clamp(19px, 3.6vw, 23px);
+      font-size: clamp(19px, 3.6vw, 24px);
       font-weight: 700;
       letter-spacing: -0.03em;
-      color: var(--im-black);
+      color: var(--text);
       margin-bottom: 10px;
     }
 
     .hero-desc {
-      font-size: 14.5px;
+      font-size: 15px;
       line-height: 1.7;
-      color: var(--text);
+      color: var(--text-secondary);
+      max-width: 520px;
     }
 
     /* Info cards */
@@ -646,10 +649,8 @@
     /* Responsive */
     @media (max-width: 600px) {
       .container { padding: 14px 16px 60px; }
-      .hero { padding: 32px 24px 116px; border-radius: 20px; min-height: 0; display: block; }
-      .hero-inner { max-width: none; }
-      .hero-blob-side { display: none; }
-      .hero-blob-bottom { display: block; left: 0; bottom: -1px; width: 100%; height: 84px; }
+      .hero { padding: 32px 24px 190px; border-radius: 20px; }
+      .hero-glow { left: -45%; width: 200%; top: 66%; filter: blur(20px); }
       .info-grid { grid-template-columns: 1fr; }
       .section-card { padding: 24px 20px; }
       .privacy-toggle { padding: 20px; }
@@ -688,12 +689,7 @@
           아임웹에 대해 궁금한 점, 각 포지션에서 어떤 문제를 풀고 어떤 임팩트를 만들 수 있을지 자세히 말씀드릴 예정이에요.
         </p>
       </div>
-      <svg class="hero-blob hero-blob-side" viewBox="0 0 300 500" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#00E600" d="M300 0H170C70 10 30 120 120 172C20 196 0 318 104 352C40 392 60 482 150 500H300Z"/>
-      </svg>
-      <svg class="hero-blob hero-blob-bottom" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#00E600" d="M0 120V96C36 58 108 56 142 90C170 40 258 30 292 72C322 30 380 22 400 44V120Z"/>
-      </svg>
+<div class="hero-glow" aria-hidden="true"></div>
     </div>
 
     <!-- Info Grid -->
