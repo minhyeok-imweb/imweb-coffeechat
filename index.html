@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>아임웹 커피챗 신청 ☕️</title>
 
-  <!-- Coffee favicon (inline SVG) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23FF2D78'/><stop offset='1' stop-color='%23FF6B3D'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='url(%23g)'/><path fill='white' d='M16 24h26a4 4 0 0 1 4 4v3h2a6 6 0 0 1 0 12h-2.4A12 12 0 0 1 34 52H24a12 12 0 0 1-12-12V28a4 4 0 0 1 4-4zm30 11v-4h-2v8.5a8 8 0 0 0 2-4.5zm-26-9c-.5-2 .8-4 1.7-5.4.7-1.1.3-2.4-.6-3.1-.9-.8-2.3-.6-3 .4-1.6 2.3-3 5.5-2.1 8.9.2.8 1.1 1.3 2 1 .8-.2 1.2-1 1-1.8zm8 0c-.5-2 .8-4 1.7-5.4.7-1.1.3-2.4-.6-3.1-.9-.8-2.3-.6-3 .4-1.6 2.3-3 5.5-2.1 8.9.2.8 1.1 1.3 2 1 .8-.2 1.2-1 1-1.8zm8 0c-.5-2 .8-4 1.7-5.4.7-1.1.3-2.4-.6-3.1-.9-.8-2.3-.6-3 .4-1.6 2.3-3 5.5-2.1 8.9.2.8 1.1 1.3 2 1 .8-.2 1.2-1 1-1.8z'/></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FF2D78'/><text x='50%25' y='54%25' font-size='40' text-anchor='middle' dominant-baseline='middle'>☕</text></svg>">
+  <!-- Favicon: 아임웹 공식 심볼 -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <meta property="og:title" content="아임웹 커피챗 신청">
-  <meta property="og:description" content="아임웹과 30분, 콜챗·화상·대면으로 만나요.">
-  <meta name="theme-color" content="#FF2D78">
+  <meta property="og:description" content="아임웹과 30분, 콜챗/화상/대면으로 만나요.">
+  <meta name="theme-color" content="#C8FF00">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Defense-in-depth CSP. 'unsafe-inline' for the inline <style>/<script> blocks. -->
@@ -31,37 +31,34 @@
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 
   <style>
+    /* 아임웹 브랜드 가이드(design.imweb.me) 기준 컬러 */
     :root {
-      --primary: #FF2D78;
-      --primary-light: #FF5C9A;
-      --primary-dark: #D91A62;
-      --primary-soft: #FFF0F5;
+      --im-black: #000000;
+      --im-white: #FFFFFF;
+      --im-neon: #C8FF00;
+      --im-neon-green: #00E600;
+      --im-blue: #00B9FF;
+      --im-purple: #A500E6;
 
-      --bg: #FAFAFB;
-      --bg-card: #FFFFFF;
+      --bg: #FFFFFF;
+      --bg-card: #F5F6F8;
       --bg-input: #FFFFFF;
-      --bg-subtle: #F5F5F7;
 
-      --border: #ECECF0;
-      --border-strong: #DCDCE3;
-      --border-focus: #FF2D78;
+      --border: #DCDDDF;
+      --border-strong: #ADB2BB;
 
-      --text: #14141A;
-      --text-secondary: #4A4A55;
-      --text-muted: #74747F;
-      --text-dim: #A0A0AA;
+      --text: #1A1C20;
+      --text-secondary: #4B515B;
+      --text-muted: #717680;
+      --text-dim: #ADB2BB;
 
-      --accent-gradient: linear-gradient(135deg, #FF2D78 0%, #FF6B3D 100%);
+      --danger: #E5342A;
 
+      --radius-lg: 24px;
       --radius: 16px;
-      --radius-sm: 12px;
-      --radius-xs: 8px;
+      --radius-sm: 10px;
 
-      --shadow-sm: 0 1px 2px rgba(20,20,26,0.04);
-      --shadow-md: 0 4px 16px rgba(20,20,26,0.06);
-      --shadow-lg: 0 12px 40px rgba(255,45,120,0.18);
-
-      --font-kr: 'Pretendard', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-kr: 'Pretendard', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,62 +76,108 @@
       letter-spacing: -0.01em;
     }
 
-    /* Soft background accent */
-    .bg-accent {
-      position: fixed;
-      top: -240px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(255,45,120,0.08) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Container */
     .container {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 56px 20px 80px;
-      position: relative;
-      z-index: 1;
+      padding: 20px 20px 80px;
     }
 
-    /* Hero */
-    .hero {
-      text-align: center;
-      margin-bottom: 56px;
-      animation: fadeUp 0.7s ease-out;
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px 8px;
+      font-size: 14px;
     }
 
-    .hero h1 {
-      font-family: var(--font-kr);
-      font-size: clamp(40px, 7vw, 64px);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 14px;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .topbar .topbar-logo {
+      display: block;
+      padding: 0;
+      background: none;
+      border-radius: 0;
+      margin-left: -10px;
     }
 
-    .hero h2 {
-      font-size: clamp(22px, 4vw, 28px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
+    .topbar .topbar-logo:hover { background: none; }
+
+    .topbar-logo img {
+      display: block;
+      height: 44px;
+      width: auto;
+    }
+
+    .topbar a {
       color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 100px;
+      background: var(--bg-card);
+      transition: background 0.2s ease;
+    }
+
+    .topbar a:hover { background: var(--border); }
+
+    /* Hero: 네온 컬러 블록 + 유기적인 그래픽 */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--im-neon);
+      border-radius: var(--radius-lg);
+      padding: 44px 44px 52px;
+      min-height: 480px;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 12px;
+      animation: fadeUp 0.6s ease-out;
+    }
+
+    .hero-blob { position: absolute; display: block; }
+
+    .hero-blob-side {
+      top: 0;
+      right: 0;
+      width: 38%;
+      height: 100%;
+    }
+
+    .hero-blob-bottom { display: none; }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 62%; }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1.5px solid var(--im-black);
+      color: var(--im-black);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 100px;
       margin-bottom: 20px;
     }
 
+    .hero h1 {
+      font-size: clamp(56px, 14vw, 108px);
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+      color: var(--im-black);
+      margin-bottom: 32px;
+    }
+
+    .hero h2 {
+      font-size: clamp(19px, 3.6vw, 23px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--im-black);
+      margin-bottom: 10px;
+    }
+
     .hero-desc {
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--text-secondary);
-      max-width: 540px;
-      margin: 0 auto;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text);
     }
 
     /* Info cards */
@@ -142,123 +185,111 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin: 36px 0 24px;
-      animation: fadeUp 0.7s ease-out 0.1s both;
+      margin-bottom: 12px;
+      animation: fadeUp 0.6s ease-out 0.1s both;
     }
 
     .info-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px;
-      transition: all 0.2s ease;
-    }
-
-    .info-card:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      padding: 24px;
     }
 
     .info-card-label {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
+      color: var(--im-black);
+      margin-bottom: 14px;
     }
 
     .info-card-content {
       font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    .info-card-content strong {
-      color: var(--text);
-      font-weight: 700;
+    .info-row {
+      display: flex;
+      gap: 12px;
+      padding: 9px 0;
+      border-top: 1px solid var(--border);
     }
+
+    .info-row dt {
+      flex: 0 0 64px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .info-row dd { color: var(--text-secondary); }
 
     /* Notice */
     .notice-box {
-      background: var(--primary-soft);
-      border: 1px solid rgba(255,45,120,0.15);
+      background: var(--im-black);
+      color: rgba(255,255,255,0.82);
       border-radius: var(--radius);
-      padding: 18px 22px;
+      padding: 20px 24px;
       margin-bottom: 48px;
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 1.7;
-      color: var(--text-secondary);
-      animation: fadeUp 0.7s ease-out 0.2s both;
+      animation: fadeUp 0.6s ease-out 0.2s both;
     }
 
     .notice-box strong {
-      color: var(--text);
+      color: var(--im-neon);
       font-weight: 700;
     }
 
     /* Form sections */
     .form-section {
-      margin-bottom: 16px;
-      animation: fadeUp 0.6s ease-out both;
+      margin-bottom: 12px;
+      animation: fadeUp 0.6s ease-out 0.25s both;
     }
-
-    .form-section:nth-child(1) { animation-delay: 0.25s; }
-    .form-section:nth-child(2) { animation-delay: 0.30s; }
-    .form-section:nth-child(3) { animation-delay: 0.35s; }
-    .form-section:nth-child(4) { animation-delay: 0.40s; }
 
     .section-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 32px;
-      transition: border-color 0.25s ease;
-    }
-
-    .section-card:hover {
-      border-color: var(--border-strong);
     }
 
     .section-title {
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 700;
       margin-bottom: 4px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       display: flex;
       align-items: center;
       gap: 10px;
-      color: var(--text);
+      color: var(--im-black);
     }
 
     .section-title .icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
+      min-width: 34px;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      background: var(--primary-soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      background: var(--im-black);
+      color: var(--im-neon);
       flex-shrink: 0;
     }
 
     .section-subtitle {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
       margin-bottom: 24px;
-      margin-left: 38px;
+      margin-left: 44px;
     }
+
+    .required { color: var(--im-purple); margin-left: 2px; }
 
     /* Form fields */
-    .field {
-      margin-bottom: 22px;
-    }
-
-    .field:last-child {
-      margin-bottom: 0;
-    }
+    .field { margin-bottom: 22px; }
+    .field:last-child { margin-bottom: 0; }
 
     .field-label {
       display: block;
@@ -266,12 +297,6 @@
       font-weight: 600;
       color: var(--text);
       margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-
-    .field-label .required {
-      color: var(--primary);
-      margin-left: 2px;
     }
 
     .field-hint {
@@ -287,28 +312,24 @@
       width: 100%;
       padding: 14px 16px;
       background: var(--bg-input);
-      border: 1px solid var(--border-strong);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       color: var(--text);
       font-family: var(--font-kr);
-      font-size: 14.5px;
+      font-size: 15px;
       outline: none;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
       letter-spacing: -0.01em;
     }
 
-    input:hover, textarea:hover {
-      border-color: var(--text-dim);
-    }
+    input:hover, textarea:hover { border-color: var(--border-strong); }
 
     input:focus, textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(255,45,120,0.1);
+      border-color: var(--im-black);
+      box-shadow: 0 0 0 3px rgba(0,185,255,0.35);
     }
 
-    input::placeholder, textarea::placeholder {
-      color: var(--text-dim);
-    }
+    input::placeholder, textarea::placeholder { color: var(--text-dim); }
 
     textarea {
       resize: vertical;
@@ -323,9 +344,7 @@
       gap: 8px;
     }
 
-    .radio-option {
-      position: relative;
-    }
+    .radio-option { position: relative; }
 
     .radio-option input {
       position: absolute;
@@ -339,30 +358,27 @@
       align-items: center;
       gap: 12px;
       padding: 14px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-strong);
+      background: var(--bg-input);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       cursor: pointer;
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 500;
       color: var(--text-secondary);
-      transition: all 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .radio-option label:hover {
-      border-color: var(--text-dim);
-      background: var(--bg-subtle);
-    }
+    .radio-option label:hover { border-color: var(--border-strong); }
 
     .radio-option input:checked + label {
-      border-color: var(--primary);
-      background: var(--primary-soft);
-      color: var(--text);
+      border-color: var(--im-black);
+      box-shadow: inset 0 0 0 1px var(--im-black);
+      color: var(--im-black);
       font-weight: 600;
     }
 
     .radio-option input:focus-visible + label {
-      box-shadow: 0 0 0 4px rgba(255,45,120,0.15);
+      box-shadow: 0 0 0 3px rgba(0,185,255,0.35);
     }
 
     .radio-dot {
@@ -373,12 +389,12 @@
       flex-shrink: 0;
       transition: all 0.2s ease;
       position: relative;
-      background: white;
+      background: var(--im-white);
     }
 
     .radio-option input:checked + label .radio-dot {
-      border-color: var(--primary);
-      background: white;
+      border-color: var(--im-black);
+      background: var(--im-black);
     }
 
     .radio-option input:checked + label .radio-dot::after {
@@ -387,47 +403,38 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--primary);
+      background: var(--im-neon);
     }
 
     /* Privacy section */
     .privacy-section {
       background: var(--bg-card);
-      border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      margin-bottom: 16px;
-      animation: fadeUp 0.7s ease-out 0.2s both;
+      margin-bottom: 12px;
+      animation: fadeUp 0.6s ease-out 0.2s both;
     }
 
     .privacy-toggle {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 24px;
+      padding: 22px 32px;
       cursor: pointer;
       user-select: none;
-      transition: background 0.2s ease;
-    }
-
-    .privacy-toggle:hover {
-      background: var(--bg-subtle);
     }
 
     .privacy-toggle-label {
-      font-size: 14.5px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       display: flex;
       align-items: center;
-      gap: 8px;
-      color: var(--text);
-    }
-
-    .privacy-toggle-label .required {
-      color: var(--primary);
+      gap: 6px;
+      color: var(--im-black);
     }
 
     .privacy-arrow {
@@ -436,9 +443,7 @@
       transition: transform 0.3s ease;
     }
 
-    .privacy-arrow.open {
-      transform: rotate(180deg);
-    }
+    .privacy-arrow.open { transform: rotate(180deg); }
 
     .privacy-content {
       max-height: 0;
@@ -446,17 +451,15 @@
       transition: max-height 0.4s ease;
     }
 
-    .privacy-content.open {
-      max-height: 600px;
-    }
+    .privacy-content.open { max-height: 700px; }
 
     .privacy-text {
-      padding: 0 24px 20px;
-      font-size: 12.5px;
+      margin: 0 32px 20px;
+      padding-top: 20px;
+      font-size: 13px;
       line-height: 1.85;
       color: var(--text-muted);
       border-top: 1px solid var(--border);
-      padding-top: 20px;
     }
 
     .privacy-text strong {
@@ -464,62 +467,48 @@
       font-weight: 700;
     }
 
-    .privacy-agree {
-      padding: 0 24px 22px;
-    }
+    .privacy-agree { padding: 0 32px 28px; }
 
     .privacy-agree .radio-group {
       flex-direction: row;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .privacy-agree .radio-option {
-      flex: 1;
-    }
-
-    .privacy-agree .radio-option label {
-      padding: 12px 16px;
-      font-size: 13.5px;
-      justify-content: center;
-    }
+    .privacy-agree .radio-option { flex: 1; }
 
     /* Submit */
     .submit-area {
-      margin-top: 32px;
-      animation: fadeUp 0.6s ease-out 0.5s both;
+      margin-top: 28px;
+      animation: fadeUp 0.6s ease-out 0.3s both;
     }
 
     .submit-btn {
       width: 100%;
-      padding: 18px;
+      padding: 20px;
       border: none;
-      border-radius: var(--radius);
-      background: var(--accent-gradient);
-      color: white;
+      border-radius: 100px;
+      background: var(--im-black);
+      color: var(--im-white);
       font-family: var(--font-kr);
-      font-size: 15.5px;
+      font-size: 16.5px;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       cursor: pointer;
-      transition: all 0.25s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(255,45,120,0.2);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
     .submit-btn:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      background: var(--im-neon);
+      color: var(--im-black);
     }
 
-    .submit-btn:active:not(:disabled) {
-      transform: translateY(0);
-    }
+    .submit-btn:active:not(:disabled) { transform: scale(0.99); }
+
+    .submit-btn:focus-visible { outline: 3px solid var(--im-blue); outline-offset: 3px; }
 
     .submit-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      transform: none;
     }
 
     .submit-btn .spinner {
@@ -527,7 +516,7 @@
       width: 20px;
       height: 20px;
       border: 2.5px solid rgba(255,255,255,0.35);
-      border-top-color: white;
+      border-top-color: var(--im-white);
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
       margin: 0 auto;
@@ -538,27 +527,22 @@
 
     /* Footer */
     .footer {
-      text-align: center;
       margin-top: 56px;
-      padding-top: 32px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
-      animation: fadeUp 0.6s ease-out 0.6s both;
     }
 
     .footer p {
-      font-size: 12.5px;
+      font-size: 13px;
       color: var(--text-muted);
       line-height: 1.8;
     }
 
     .footer a {
-      color: var(--primary);
-      text-decoration: none;
+      color: var(--text);
       font-weight: 600;
-    }
-
-    .footer a:hover {
       text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     /* Success overlay */
@@ -566,7 +550,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: var(--bg);
+      background: var(--im-neon);
       z-index: 100;
       justify-content: center;
       align-items: center;
@@ -574,9 +558,7 @@
       padding: 40px;
     }
 
-    .success-overlay.visible {
-      display: flex;
-    }
+    .success-overlay.visible { display: flex; }
 
     .success-content {
       animation: scaleIn 0.5s ease-out;
@@ -588,25 +570,25 @@
       height: 88px;
       margin: 0 auto 28px;
       border-radius: 50%;
-      background: var(--accent-gradient);
+      background: var(--im-black);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 44px;
-      box-shadow: var(--shadow-lg);
+      font-size: 42px;
     }
 
     .success-content h2 {
-      font-size: 28px;
+      font-size: clamp(30px, 7vw, 44px);
       font-weight: 800;
-      margin-bottom: 14px;
-      letter-spacing: -0.03em;
-      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+      color: var(--im-black);
     }
 
     .success-content p {
       font-size: 15px;
-      color: var(--text-secondary);
+      color: var(--text);
       line-height: 1.75;
       margin-bottom: 32px;
     }
@@ -615,49 +597,40 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 28px;
-      background: var(--accent-gradient);
-      color: white;
+      padding: 15px 28px;
+      background: var(--im-black);
+      color: var(--im-white);
       text-decoration: none;
       border-radius: 100px;
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 700;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 16px rgba(255,45,120,0.25);
+      transition: transform 0.2s ease;
     }
 
-    .success-link:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
+    .success-link:hover { transform: translateY(-2px); }
 
     /* Validation */
     .field-error {
       font-size: 12.5px;
-      color: #E11D48;
+      color: var(--danger);
       margin-top: 6px;
       display: none;
       font-weight: 500;
     }
 
     .field.invalid input,
-    .field.invalid textarea {
-      border-color: #E11D48;
-      background: #FFF5F7;
-    }
+    .field.invalid textarea { border-color: var(--danger); }
 
-    .field.invalid .field-error {
-      display: block;
-    }
+    .field.invalid .field-error { display: block; }
 
     /* Animations */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.92); }
+      from { opacity: 0; transform: scale(0.94); }
       to { opacity: 1; transform: scale(1); }
     }
 
@@ -665,13 +638,24 @@
       to { transform: rotate(360deg); }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
-      .container { padding: 32px 16px 60px; }
+      .container { padding: 14px 16px 60px; }
+      .hero { padding: 32px 24px 116px; border-radius: 20px; min-height: 0; display: block; }
+      .hero-inner { max-width: none; }
+      .hero-blob-side { display: none; }
+      .hero-blob-bottom { display: block; left: 0; bottom: -1px; width: 100%; height: 84px; }
       .info-grid { grid-template-columns: 1fr; }
-      .section-card { padding: 24px; }
-      .privacy-agree .radio-group { flex-direction: column; gap: 8px; }
-      .hero { margin-bottom: 40px; }
+      .section-card { padding: 24px 20px; }
+      .privacy-toggle { padding: 20px; }
+      .privacy-text { margin: 0 20px 20px; }
+      .privacy-agree { padding: 0 20px 24px; }
+      .privacy-agree .radio-group { flex-direction: column; }
     }
 
     /* Honeypot (anti-spam) */
@@ -685,37 +669,50 @@
   </style>
 </head>
 <body>
-  <div class="bg-accent"></div>
-
   <div class="container">
+    <!-- Top bar -->
+    <div class="topbar">
+      <a class="topbar-logo" href="https://team.imweb.me/" target="_blank" rel="noopener"><img src="assets/imweb-logo.png" alt="imweb" width="140" height="44"></a>
+      <a href="https://team.imweb.me/" target="_blank" rel="noopener">아임웹 팀 알아보기 →</a>
+    </div>
+
     <!-- Hero -->
     <div class="hero">
-      <h1>Coffee Chat</h1>
-      <h2>아임웹 채용팀과 커피챗 어떠세요? ☕️</h2>
-      <p class="hero-desc">
-        아임웹 채용에 관심 가져주셔서 감사합니다 🙌<br>
-        리크루터와 콜챗·화상·대면 중 희망하는 방식으로 30분간 진행됩니다.
-        아임웹에 대해 궁금한 점, 각 포지션에서 어떤 문제를 풀고 어떤 임팩트를 만들 수 있을지 자세히 말씀드릴 예정이에요.
-      </p>
+      <div class="hero-inner">
+        <span class="hero-tag">리크루터와 30분</span>
+        <h1>Coffee<br>Chat</h1>
+        <h2>아임웹 채용팀과 커피챗 어떠세요? ☕️</h2>
+        <p class="hero-desc">
+          아임웹 채용에 관심 가져주셔서 감사합니다 🙌<br>
+          콜챗, 화상, 대면 중 희망하는 방식으로 진행됩니다.
+          아임웹에 대해 궁금한 점, 각 포지션에서 어떤 문제를 풀고 어떤 임팩트를 만들 수 있을지 자세히 말씀드릴 예정이에요.
+        </p>
+      </div>
+      <svg class="hero-blob hero-blob-side" viewBox="0 0 300 500" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#00E600" d="M300 0H170C70 10 30 120 120 172C20 196 0 318 104 352C40 392 60 482 150 500H300Z"/>
+      </svg>
+      <svg class="hero-blob hero-blob-bottom" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#00E600" d="M0 120V96C36 58 108 56 142 90C170 40 258 30 292 72C322 30 380 22 400 44V120Z"/>
+      </svg>
     </div>
 
     <!-- Info Grid -->
     <div class="info-grid">
       <div class="info-card">
         <div class="info-card-label">진행 방식</div>
-        <div class="info-card-content">
-          <strong>콜챗</strong> · 통화<br>
-          <strong>화상</strong> · 구글밋<br>
-          <strong>대면</strong> · 아임웹 오피스 또는 희망 장소
-        </div>
+        <dl class="info-card-content">
+          <div class="info-row"><dt>콜챗</dt><dd>통화</dd></div>
+          <div class="info-row"><dt>화상</dt><dd>구글밋</dd></div>
+          <div class="info-row"><dt>대면</dt><dd>아임웹 오피스 또는 희망 장소</dd></div>
+        </dl>
       </div>
       <div class="info-card">
         <div class="info-card-label">참고 사항</div>
-        <div class="info-card-content">
-          소요시간 <strong>30분</strong><br>
-          신청자 중 선정 후 개별 연락<br>
-          문의 <strong>join@imweb.me</strong>
-        </div>
+        <dl class="info-card-content">
+          <div class="info-row"><dt>소요시간</dt><dd>30분</dd></div>
+          <div class="info-row"><dt>안내</dt><dd>신청자 중 선정 후 개별 연락</dd></div>
+          <div class="info-row"><dt>문의</dt><dd>join@imweb.me</dd></div>
+        </dl>
       </div>
     </div>
 
@@ -749,7 +746,7 @@
             <strong>3. 보유기간</strong><br>
             지원 후 6개월 간, 단 정보주체의 삭제 요청이 있는 경우 지체 없이 파기<br><br>
             ※ 회사는 본인이 작성/제출한 정보에 한하여 정보를 수집합니다.<br>
-            ※ 귀하는 개인 정보 수집ㆍ이용에 대한 동의를 거부할 권리가 있습니다. 이 경우에는 커피챗 안내를 전달받기 어렵습니다.
+            ※ 귀하는 개인 정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 이 경우에는 커피챗 안내를 전달받기 어렵습니다.
           </div>
           <div class="privacy-agree">
             <div class="radio-group">
@@ -776,8 +773,8 @@
       <div class="form-section">
         <div class="section-card">
           <div class="section-title">
-            <span class="icon">☕</span>
-            희망하시는 커피챗 방식 <span class="required" style="color:var(--primary)">*</span>
+            <span class="icon">01</span>
+            희망하시는 커피챗 방식 <span class="required">*</span>
           </div>
           <div class="section-subtitle">하나를 선택해주세요</div>
           <div class="radio-group">
@@ -810,7 +807,7 @@
       <div class="form-section">
         <div class="section-card">
           <div class="section-title">
-            <span class="icon">👤</span>
+            <span class="icon">02</span>
             기본 정보
           </div>
           <div class="section-subtitle">정확한 정보를 입력해주세요</div>
@@ -840,7 +837,7 @@
       <div class="form-section">
         <div class="section-card">
           <div class="section-title">
-            <span class="icon">💼</span>
+            <span class="icon">03</span>
             경력 정보
           </div>
           <div class="section-subtitle">현재 경력 상황을 알려주세요</div>
@@ -886,7 +883,7 @@
       <div class="form-section">
         <div class="section-card">
           <div class="section-title">
-            <span class="icon">✨</span>
+            <span class="icon">04</span>
             추가 정보
           </div>
           <div class="section-subtitle">선택 사항이에요</div>
@@ -1087,7 +1084,7 @@
 
         if (isPlaceholder) {
           // Demo mode: PII는 콘솔에 찍지 않음
-          console.warn('Apps Script URL 미설정 — 데모 모드로 동작 중');
+          console.warn('Apps Script URL 미설정: 데모 모드로 동작 중');
           await new Promise(r => setTimeout(r, 1200));
         } else {
           // text/plain 으로 전송하여 CORS preflight 회피
